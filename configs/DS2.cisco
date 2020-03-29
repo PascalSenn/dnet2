@@ -1,0 +1,57 @@
+hostname DS2
+banner motd "
+AUTHRORIZED ACCESS ONLY
+"
+
+username Administrator password Passw0rd 
+line vty 0
+password class
+transport input ssh
+login local
+exit
+
+ip ssh version 2
+ip domain-name dnet2.ch
+crypto key generate rsa 
+1024
+no
+
+
+interface range Fa 0/1-24
+shutdown 
+switchport trunk  native vlan 99
+switchport mode trunk
+exit
+
+interface range G 0/1-2
+no shutdown 
+switchport trunk  native vlan 99
+switchport mode trunk
+exit
+
+interface range Fa 0/21-24
+no shutdown 
+switchport trunk  native vlan 99
+switchport mode trunk 
+channel-group 1 mode on
+exit
+
+interface port-channel 1
+switchport trunk  native vlan 99
+switchport mode trunk
+exit
+ 
+ip default-gateway 172.168.30.1
+
+interface vlan 30 
+no shutdown
+ip address 172.168.30.10 255.255.255.0
+exit
+
+
+vtp domain dnet2
+vtp version 2
+vtp mode server
+vtp password dnet2
+
+spanning-tree mode rapid-pvst

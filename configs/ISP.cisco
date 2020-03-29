@@ -1,0 +1,39 @@
+hostname ISP
+banner motd "
+AUTHRORIZED ACCESS ONLY
+"
+
+username Administrator password Passw0rd 
+line vty 0
+password class
+transport input ssh
+login local
+exit
+
+ip ssh version 2
+ip domain-name dnet2.ch
+crypto key generate rsa 
+1024
+no
+
+interface S0/0/0 
+no shutdown
+ip address 192.168.0.1 255.255.255.252
+exit
+
+interface S0/0/1
+no shutdown
+ip address 192.168.1.1 255.255.255.252
+exit
+
+ip route 192.168.2.0 255.255.255.252  S0/0/0
+ip route 192.168.0.0 255.255.255.252  S0/0/0
+ip route 172.168.10.0 255.255.255.0  S0/0/0
+ip route 172.168.20.0 255.255.255.0  S0/0/0
+ip route 172.168.30.0 255.255.255.0  S0/0/0
+
+ip route 192.168.3.0 255.255.255.252  S0/0/1
+ip route 192.168.1.0 255.255.255.252  S0/0/1
+ip route 172.169.10.0 255.255.255.0  S0/0/1
+ip route 172.169.20.0 255.255.255.0  S0/0/1
+ip route 172.169.30.0 255.255.255.0  S0/0/1
