@@ -1,5 +1,8 @@
 # **DNET2** - _Lab 2_
 
+
+[**Download Solution `Sol.pkg`:** ![Download](https://img.icons8.com/ios/50/000000/download-2.png)](https://github.com/PascalSenn/dnet2/raw/master/Sol.pkt)
+
 ![Netzplan](diagrams/netzplan.png)
 
 # Addressplan
